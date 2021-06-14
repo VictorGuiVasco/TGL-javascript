@@ -15,16 +15,14 @@
   <div class="container">
     <header>
       <div>
-        <div class="logo">
-          <button class="tgl">TGL</button>
-          <div class="green-bar"></div>
-        </div>
+        <button class="tgl">TGL</button>
+        <div class="green-bar"></div>
         <button>Home</button>
       </div>
 
       <div class="logout">
         <button>Account</button>
-        <button>Log out -></button>
+        <button>Log out <img src="images/icons/arrow-right.svg" alt="logout"></button>
       </div>
     </header>
 
@@ -32,27 +30,27 @@
       <section>
         <div class="main-content">
           <div class="title">
-            <h2>NEW BET</h2>
-            <h2 class="game-name">FOR MEGA-SENA</h2>
+            <h1>NEW BET</h1>
+            <h1 class="game-name" data-js="title-name-game">FOR MEGA-SENA</h1>
           </div>
 
-          <div class="bets">
+          <div class="bets-options">
             <p>Choosse a game</p>
             <div class="option">
-              <button class="lotofacil" >Lotofácil</button>
-              <button class="mega-sena" >Mega-Sena</button>
-              <button class="lotomania" >Lotomania</button>
+              <button data-js="lotofacil-button" class="lotofacil-button">Lotofácil</button>
+              <button data-js="mega-sena-button" class="mega-sena-button">Mega-Sena</button>
+              <button data-js="lotomania-button" class="lotomania-button">Lotomania</button>
             </div>
           </div>
 
           <div class="rules">
-            <h3>fill your bet</h3>
+            <h1>fill your bet</h1>
             <p>Mark as many numbers as you want up to a maximum of 50. Win by hitting 15, 16, 17, 18, 19, 20 or none of
               the 20 numbers drawn.</p>
           </div>
 
-          <div class="game">
-            <div class="betting-sheet">
+          <div class="betting-sheet">
+            <div class="card">
               <button>01</button>
               <button>02</button>
               <button>03</button>
@@ -66,7 +64,7 @@
               <button>02</button>
               <button>03</button>
             </div>
-            <div class="betting-sheet">
+            <div class="card">
               <button>01</button>
               <button>02</button>
               <button>03</button>
@@ -80,7 +78,7 @@
               <button>02</button>
               <button>03</button>
             </div>
-            <div class="betting-sheet">
+            <div class="card">
               <button>01</button>
               <button>02</button>
               <button>03</button>
@@ -98,11 +96,62 @@
 
           <div class="button-container">
             <div>
-              <button class="complete-game" >Complete game</button>
-              <button class="clear-game" >Clear game</button>
+              <button class="complete-game">Complete game</button>
+              <button class="clear-game">Clear game</button>
             </div>
             <button class="cart-button"><img src="images/icons/shopping-cart.svg" alt="cart">Add to cart</button>
           </div>
+        </div>
+
+        <div class="cart-container">
+          <div class="title">
+            <h1>CART</h1>
+          </div>
+
+          <div class="cart-betting-sheet">
+            <div class="betting-sheet-game">
+              <button class="delete-bet">
+                <img src="images/icons/trash.svg" alt="deletar">
+              </button>
+
+              <div class="bet">
+                <div class="pourple-bar"></div>
+                <div class="bet-card">
+                  <p class="numbers">01, 02, 04, 05, 06, 07, 09, 15, 17, 20, 21, 22, 23, 24, 25</p>
+                  <div class="bet-price">
+                    <p class="lotofacil">Lotofácil</p>
+                    <p class="price">R$ 2,50</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="betting-sheet-game">
+              <button class="delete-bet">
+                <img src="images/icons/trash.svg" alt="deletar">
+              </button>
+
+              <div class="bet" s>
+                <div class="green-bar"></div>
+                <div class="bet-card" >
+                  <p class="numbers">01,03,04,05,06</p>
+                  <div class="bet-price">
+                    <p class="mega-sena">Mega-sena</p>
+                    <p class="price">R$ 4,50</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="total-price">
+              <h1>CART</h1>
+              <h1>TOTAL: R$7,00</h1>
+            </div>
+          </div>
+
+          <button class="save-cart">
+            Save <img src="images/icons/arrow-right-save.svg" alt="">
+          </button>
         </div>
       </section>
     </main>

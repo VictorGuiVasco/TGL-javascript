@@ -15,14 +15,10 @@ button {
   cursor: pointer;
 }
 
-.container {
-  width: 100vw;
-  height: 100vh
-}
 
-.container header {
-  height: 65.5px;
-  padding: 0 150px 0 100px;
+header {
+  height: 75.5px;
+  padding: 0 200px 0 130px;
 
   border-bottom: 2px solid #EBEBEB;
 
@@ -31,39 +27,36 @@ button {
   justify-content: space-between;
 }
 
-.container header div {
+header div {
   display: flex;
   align-items: center;
   text-align: center;
 }
 
-.container header div button {
-  text-align: center;
-  font: italic normal bold 18px sans-serif;
-  color: #707070;
-}
-
-.container header div .tgl {
-  padding-left: 21px;
-  margin-right : 74px;
-  font: italic normal bold 34px sans-serif;
-
-  color: #707070;
-}
-
-.logo {
-  height: 65px;
+header div button {
   display: flex;
   justify-content: center;
-  flex-direction: column;
-}
 
-.logout button:last-child {
   text-align: center;
-  margin-left: 40px;
+  font: italic normal bold 20px sans-serif;
+  color: #707070;
 }
 
-.green-bar {
+header div button img {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+header div .tgl {
+  padding-left: 11px;
+  margin-right : 74px;
+  font: italic normal bold 44px sans-serif;
+
+  color: #707070;
+}
+
+header .green-bar {
   width: 107px;
   height: 7px;
   background-color: #B5C401;
@@ -71,17 +64,26 @@ button {
 
   position: absolute;
 
-  top: 62px;
-  left: 100px;
+  top: 72px;
+  left: 130px;
+}
+
+header .logout button:last-child {
+  text-align: center;
+  margin-left: 40px;
 }
 
 main {
-  padding: 0 150px 0 100px;
+  padding: 0 200px 0 130px;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .main-content {
-  margin-top: 43.5px;
-  max-width: 585px;
+  margin-top: 73.5px;
 }
 
 .main-content .title {
@@ -89,7 +91,7 @@ main {
   flex-direction: row;
 }
 
-.main-content h2 {
+.main-content .title h1 {
   text-align: center;
   font: italic normal bold 20px sans-serif;
   
@@ -97,51 +99,54 @@ main {
   text-transform: uppercase;
 }
 
-.main-content .game-name {
+.main-content .title .game-name {
   margin-left: 10px;
   font-weight: lighter;
   
   color: #707070;
 }
 
-.bets {
-  margin-top: 23px;
+.bets-options {
+  margin-top: 33px;
 }
 
-.bets p {
+.bets-options p {
   text-align: left;
-  font: italic normal bold 16px sans-serif;
+  font: italic normal bold 17px sans-serif;
   letter-spacing: 0px;
   color: #868686;
 }
 
-.option {
-  margin-top: 10px;
-  margin-bottom: 18px;
+.bets-options .option {
+  margin-top: 20px;
+  margin-bottom: 28px;
 }
 
-.option button{
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  padding: 9px 24px;
+.bets-options .option button {
+  width: 113px;
+  height: 34px;
+
   border-radius: 100px;
 
+  background: #FFFFFF;
+
   text-align: center;
-  font: italic normal bold 12px sans-serif;
+  font: italic normal bold 14px sans-serif;
 }
 
-.lotofacil {
+.lotofacil-button {
   border: 2px solid #7F3992;
   color: #7F3992;
 }
 
-.mega-sena {
+.mega-sena-button {
   border: 2px solid #01AC66;
   color: #01AC66;
 
   margin: 0 15px;
 }
 
-.lotomania {
+.lotomania-button {
   border: 2px solid #F79C31;
   color: #F79C31;
 }
@@ -150,40 +155,38 @@ main {
   margin-bottom: 27px;
 }
 
-.rules h3 {
-  font: italic normal bold 16px sans-serif;
+.rules h1 {
+  font: italic normal bold 17px sans-serif;
   color: #868686;
 }
 
 .rules p {
   margin-top: 5px;
-  font: italic normal normal 14px sans-serif;
+  font: italic normal normal 17px sans-serif;
   color: #868686;
 }
 
-.game {
-  display: flex;
-  flex-direction: row;
-}
-
-.betting-sheet {
+.betting-sheet, .card {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+.betting-sheet .card:first-child {
   margin-right: 8px;
 }
 
-.betting-sheet:last-child {
-  margin-right: 0;
+.betting-sheet .card:last-child {
+  margin-left: 8px;
 }
 
-.betting-sheet button {
-  width: 53px;
-  height: 55px;
+.betting-sheet .card button {
+  width: 63px;
+  height: 65px;
 
   margin-right: 12px;
   margin-bottom: 20px;
 
-  font: normal normal bold 16px sans-serif;
+  font: normal normal bold 20px sans-serif;
   color: #FFFFFF;
 
   background: #ADC0C4 0% 0% no-repeat padding-box;
@@ -194,12 +197,16 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  margin-top: 24px;
+  padding-bottom: 44px;
 }
 
 .button-container div button {
-  padding: 10px 20px;
+  padding: 17px 26px;
 
-  font: normal normal medium 16px sans-serif;
+  text-align: center;
+  font-size: 16px;
   color: #27C383;
 
   border: 1px solid #27C383;
@@ -210,22 +217,166 @@ main {
   margin-left: 20px;
 }
 
-.cart-button {
-  padding: 10px 20px;
+.button-container .cart-button {
+  padding: 17px 26px;
 
   display: flex;
   align-items: center;
 
-  font: normal normal medium 16px sans-serif;
+  font-size: 16px;
   color: #FFF;
 
   background: #27C383 0% 0% no-repeat padding-box;
   border-radius: 10px;
 }
 
-.cart-button img {
+.button-container .cart-button img {
   margin-right: 10px;
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
 }
 
+/* Rigth side css */
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  justify-self: right;
+
+  margin-top: 41.5px;
+
+  width: 317px;
+  height: 484px;
+
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #E2E2E2;
+  border-radius: 10px;
+}
+
+.cart-container .title h1 {
+  padding: 32px 0 0 19px;
+  
+  text-align: left;
+  font: italic normal bold 24px sans-serif;
+  color: #707070;
+}
+
+.cart-betting-sheet {
+  padding-left: 19px;
+}
+
+.cart-betting-sheet .betting-sheet-game {
+  display: flex;
+  align-items: center;
+
+  height: 86px;
+  margin-bottom: 32px;
+}
+
+.cart-betting-sheet .betting-sheet-game .delete-bet {
+  margin-right: 20px;
+}
+
+.bet {
+  height: 86px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bet .bet-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.pourple-bar {
+  width: 4px;
+  background: #7F3992;
+  border-radius: 100px 0 0 100px;
+  margin-right: 10px;
+}
+
+.green-bar {
+  width: 4px;
+  background: #01AC66;
+  border-radius: 100px 0 0 100px;
+  margin-right: 10px;
+}
+
+.orange-bar {
+  width: 4px;
+  background: #F79C31;
+  border-radius: 100px 0 0 100px;
+  margin-right: 10px;
+}
+
+.numbers {
+  font: italic normal bold 15px sans-serif;
+  color: #868686;
+}
+
+.bet .bet-price {
+  display: flex;
+}
+
+.bet .bet-price p {
+  font: italic normal lighter 16px sans-serif;
+  color: #868686;
+}
+
+.bet .bet-price .lotofacil {
+  font: italic normal bold 16px sans-serif;
+  color: #7F3992;
+
+  margin-right: 10px;
+}
+
+.bet .bet-price .mega-sena {
+  font: italic normal bold 16px sans-serif;
+  color: #01AC66;
+
+  margin-right: 10px;
+}
+
+.bet .bet-price .lotomania {
+  font: italic normal bold 16px sans-serif;
+  color: #F79C31;
+
+  margin-right: 10px;
+}
+
+.total-price {
+  display: flex;
+}
+
+.total-price h1 {
+  font: italic normal bold 24px sans-serif;
+  color: #707070;
+}
+
+.total-price h1:last-child {
+  font-weight: lighter;
+
+  margin-left: 10px;
+}
+
+.cart-container .save-cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  height: 96px;
+  background-color: #F4F4F4;
+
+  font: italic normal bold 35px sans-serif;
+  border: 1px solid #E2E2E2;
+  color: #27C383;
+}
+
+.cart-container .save-cart img {
+  margin-left: 18px;
+  width: 28px;
+  height: 28px;
+}
