@@ -128,27 +128,45 @@ section {
 
   border-radius: 100px;
 
-  background: #FFFFFF;
-
   text-align: center;
   font: italic normal bold 14px sans-serif;
 }
 
 .lotofacil-button {
+  background: #FFFFFF;
   border: 2px solid #7F3992;
   color: #7F3992;
 }
 
+.lotofacil-button-actived {
+  background-color: #7F3992;
+  color: #FFF;
+}
+
 .mega-sena-button {
+  background: #FFFFFF;
   border: 2px solid #01AC66;
   color: #01AC66;
 
-  margin: 0 15px;
+  margin: 0 20px;
+}
+
+.mega-sena-button-actived {
+  background-color: #01AC66;
+  color: #FFF;
+
+  margin: 0 20px;
 }
 
 .lotomania-button {
+  background: #FFFFFF;
   border: 2px solid #F79C31;
   color: #F79C31;
+}
+
+.lotomania-button-actived {
+  background-color: #F79C31;
+  color: #FFF;
 }
 
 .rules {
@@ -168,15 +186,7 @@ section {
 
 .betting-sheet, .card {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.betting-sheet .card:first-child {
-  margin-right: 8px;
-}
-
-.betting-sheet .card:last-child {
-  margin-left: 8px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .betting-sheet .card button {
