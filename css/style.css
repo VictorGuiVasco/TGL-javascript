@@ -136,6 +136,8 @@ section {
   background: #FFFFFF;
   border: 2px solid #7F3992;
   color: #7F3992;
+
+  transition: filter 0.02;
 }
 
 .lotofacil-button-actived {
@@ -167,6 +169,10 @@ section {
 .lotomania-button-actived {
   background-color: #F79C31;
   color: #FFF;
+}
+
+.option button:hover{
+  filter: brightness(0.9);
 }
 
 .rules {
@@ -251,13 +257,11 @@ section {
 .cart-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   justify-self: right;
 
   margin-top: 41.5px;
 
   width: 317px;
-  height: 484px;
 
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border: 1px solid #E2E2E2;
@@ -265,7 +269,7 @@ section {
 }
 
 .cart-container .title h1 {
-  padding: 32px 0 0 19px;
+  padding: 32px 0 32px 19px;
   
   text-align: left;
   font: italic normal bold 24px sans-serif;
@@ -323,6 +327,7 @@ section {
 }
 
 .numbers {
+  max-width: 300px;
   font: italic normal bold 15px sans-serif;
   color: #868686;
 }
@@ -376,6 +381,8 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  margin-top: 32px;
   
   height: 96px;
   background-color: #F4F4F4;
@@ -389,4 +396,8 @@ section {
   margin-left: 18px;
   width: 28px;
   height: 28px;
+}
+
+.total-price {
+  padding-left: 19px;
 }
