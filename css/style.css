@@ -195,7 +195,7 @@ section {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.betting-sheet .card button {
+.betting-sheet .card .number-card {
   width: 63px;
   height: 65px;
 
@@ -206,6 +206,26 @@ section {
   color: #FFFFFF;
 
   background: #ADC0C4 0% 0% no-repeat padding-box;
+  border-radius: 100%;
+
+  transition: filter 0.02;
+}
+
+.betting-sheet .card button:hover {
+  filter: brightness(0.9);
+}
+
+.number-card-actived {
+  width: 63px;
+  height: 65px;
+
+  margin-right: 12px;
+  margin-bottom: 20px;
+
+  font: normal normal bold 20px sans-serif;
+  color: #FFFFFF;
+
+  background: #999 0% 0% no-repeat padding-box;
   border-radius: 100%;
 }
 
@@ -327,7 +347,7 @@ section {
 }
 
 .numbers {
-  max-width: 300px;
+  max-width: 220px;
   font: italic normal bold 15px sans-serif;
   color: #868686;
 }

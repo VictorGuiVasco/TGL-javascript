@@ -6,8 +6,11 @@
   var actualRange = 0
   var actualPrice = 0
 
+  var rules
+  var actualGame
+
   var app = (() => {
-    var rules = {}
+
     var lotofacil
     var megasena
     var lotomania
@@ -17,6 +20,29 @@
       init: function init() {
         this.openConnection()
         this.initEvents()
+      },
+
+      openConnection: function openConnection() {
+        var ajax = new XMLHttpRequest()
+        ajax.open('GET', '../games.json', true)
+        ajax.send()
+
+        ajax.addEventListener('readystatechange', this.getBetData, false)
+      },
+
+      getBetData: function getBetData() {
+        var data
+        try {
+          rules = JSON.parse(this.responseText).types
+        } catch (error) {
+          rules = null
+        }
+
+        if (rules) {
+          lotofacil = rules[0]
+          megasena = rules[1]
+          lotomania = rules[2]
+        }
       },
 
       initEvents: function initEvents() {
@@ -35,15 +61,56 @@
         DOM('.number-card').on('click', this.handleClickBetNumber, false)
       },
 
+      handleClickBetButton: function handleClickBetButton() {
+        numbersSelected = []
+        if (this.textContent === 'Lotofácil') {
+          actualGame = app().getGameRules(this.textContent)
+
+          app().changeBackgroundColor(this)
+          app().showBetInfo()
+        }
+        if ('Mega-Sena' === this.textContent) {
+          actualGame = app().getGameRules(this.textContent)
+
+          app().changeBackgroundColor(this)
+          app().showBetInfo()
+        }
+        if ('Lotomania' === this.textContent) {
+          actualGame = app().getGameRules('Quina')
+
+          app().changeBackgroundColor(this)
+          app().showBetInfo()
+        }
+      },
+
+      handleClickBetNumber: function handleClickBetNumber() {
+        if (app().hasNumber(this.textContent)) {
+          this.className = 'number-card'
+          numbersSelected.splice(numbersSelected.indexOf(Number(this.textContent)), 1)
+        }
+        else if (numbersSelected.length === numbersSelectedLength) {
+          console.log('array cheio')
+        }
+        else {
+          this.className = 'number-card-actived'
+          numbersSelected.push(Number(this.textContent))
+        }
+        console.log(numbersSelected)
+      },
+
       handleCompleteGame: function handleCompleteGame() {
         var numOfEmptySpaces = numbersSelectedLength - numbersSelected.length
         for (var i = 0; i < numOfEmptySpaces; i++) {
-          numbersSelected.push(app().getRandomIntInclusive(actualRange))
+          numbersSelected.push(app().getRandomIntInclusive(actualGame.range))
         }
-        numbersSelected.sort(app().compare)
+        app().changeNumbersBackgroundColor()
       },
 
       handleClickClearGame: function handleClickBetNumber() {
+        var $numbers = new DOM('.number-card-actived').get()
+        for (var elem of $numbers) {
+          elem.className = 'number-card'
+        }
         numbersSelected = []
       },
 
@@ -51,43 +118,11 @@
         app().addToCart()
       },
 
-      openConnection: function openConnection() {
-        var ajax = new XMLHttpRequest()
-        ajax.open('GET', '../games.json', true)
-        ajax.send()
-
-        ajax.addEventListener('readystatechange', this.getBetData, false)
-      },
-
-      getBetData: function getBetData() {
-        var data
-        try {
-          rules = JSON.parse(this.responseText)
-        } catch (error) {
-          rules = null
-        }
-
-        if (rules) {
-          lotofacil = rules.types[0]
-          megasena = rules.types[1]
-          lotomania = rules.types[2]
-        }
-      },
-
-      handleClickBetButton: function handleClickBetButton() {
-        numbersSelected = []
-        if ('Lotofácil' === this.textContent) {
-          app().changeBackgroundColor(this, lotofacil)
-          app().showBetInfo(lotofacil)
-        }
-        if ('Mega-Sena' === this.textContent) {
-          app().changeBackgroundColor(this, megasena)
-          app().showBetInfo(megasena)
-        }
-        if ('Lotomania' === this.textContent) {
-          app().changeBackgroundColor(this)
-          app().showBetInfo(lotomania)
-        }
+      getGameRules: function getGameRules(text) {
+        var result = rules.filter(obj => {
+          return obj.type === text
+        })
+        return result[0]
       },
 
       changeBackgroundColor: function changeBackgroundColor($button) {
@@ -116,10 +151,20 @@
         }
       },
 
-      showBetInfo: function showBetInfo(game) {
-        var { ['max-number']: maxNumber } = game
+      changeNumbersBackgroundColor: function changeNumbersBackgroundColor() {
+        var $numbers = new DOM('.number-card').get()
+        for (var elem of $numbers) {
+          for (var value of numbersSelected) {
+            if (Number(elem.textContent) === value) {
+              elem.className = 'number-card-actived'
+            }
+          }
+        }
+      },
+
+      showBetInfo: function showBetInfo() {
+        var { ['max-number']: maxNumber } = actualGame
         numbersSelectedLength = maxNumber
-        actualRange = game.range
 
         var $titleContainer = doc.getElementsByClassName('title')[0]
         var $titleGameOld = doc.getElementsByClassName('game-name')[0]
@@ -144,22 +189,21 @@
 
         $card.className = 'card'
 
-        for (var i = 1; i <= game.range; i++) {
+        for (var i = 1; i <= actualGame.range; i++) {
           $card.appendChild(app().createCardNumber(i))
         }
 
-
         if ($titleGameOld) {
-          $titleContainer.replaceChild(this.createtitleContainer(game.type), $titleGameOld)
-          $rulesContainer.replaceChild(this.createRulesParagraph(game.description), $oldParagraph)
+          $titleContainer.replaceChild(this.createtitleContainer(actualGame.type), $titleGameOld)
+          $rulesContainer.replaceChild(this.createRulesParagraph(actualGame.description), $oldParagraph)
           $bettingSheetContent.replaceChild($card, $oldCard)
 
           app().initNumbersEvents()
         }
         else {
-          $titleContainer.appendChild(this.createtitleContainer(game.type))
+          $titleContainer.appendChild(this.createtitleContainer(actualGame.type))
           $rulesContainer.appendChild(this.createRulesTitle())
-          $rulesContainer.appendChild(this.createRulesParagraph(game.description))
+          $rulesContainer.appendChild(this.createRulesParagraph(actualGame.description))
           $bettingSheetContent.replaceChild($card, $oldCard)
           $buttonContainer.appendChild(this.createButtonContainer())
           $buttonContainer.appendChild($cartButton)
@@ -214,20 +258,14 @@
         return $div
       },
 
-      handleClickBetNumber: function handleClickBetNumber() {
-        if (numbersSelected.length === numbersSelectedLength) {
-          console.log('array cheio')
-        }
-        else {
-          numbersSelected.push(Number(this.textContent))
-        }
-        console.log(numbersSelected)
+      hasNumber: function hasNumber() {
+        return numbersSelected.some(num => num === Number(arguments[0]))
       },
 
       getRandomIntInclusive: function getRandomIntInclusive(max) {
-        var num = Math.ceil(Math.random() * max + 1)
+        var num = Math.ceil(Math.random() * max)
         while (numbersSelected.indexOf(num) >= 0) {
-          num = Math.ceil(Math.random() * max + 1)
+          num = Math.ceil(Math.random() * max)
         }
         return num
       },
@@ -239,6 +277,7 @@
       },
 
       addToCart: function addToCart() {
+        numbersSelected.sort(app().compare)
         if (!app().isComplete()) {
           return
         }
